@@ -36,3 +36,9 @@ def make_transactions(categories):
                            description='Electricity bill payment'),
     ]
     return transactions
+
+@pytest.fixture
+def batch_transactions(create_transaction):
+    def _batch_transactions(number):
+        return [create_transaction() for _ in range(number)]
+    return _batch_transactions
